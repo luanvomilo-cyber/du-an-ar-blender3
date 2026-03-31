@@ -1,23 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>Trải nghiệm AR của tôi</title>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trải nghiệm AR Thực Tế Ảo</title>
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <style>
+        /* Xóa viền trắng xung quanh và cho web full màn hình */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            overflow: hidden; 
+        }
+        
+        /* Cài đặt khung hiển thị 3D full 100% màn hình */
+        model-viewer {
+            width: 100vw;
+            height: 100vh; 
+        }
+
+        /* Tùy chỉnh nút bấm nằm chính giữa */
+        .nut-bam-ar {
+            background-color: #FF5722; /* Màu cam nổi bật */
+            color: white;
+            border-radius: 30px;
+            border: 2px solid white;
+            position: absolute;
+            top: 50%; /* Canh giữa chiều dọc */
+            left: 50%; /* Canh giữa chiều ngang */
+            transform: translate(-50%, -50%); /* Dịch chuyển để chính xác ở tâm */
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+
+        /* Hiệu ứng khi bấm vào nút */
+        .nut-bam-ar:active {
+            background-color: #E64A19;
+            transform: translate(-50%, -45%);
+        }
+    </style>
 </head>
 <body>
 
     <model-viewer 
-        src=".glb" 
+        src="SDP.glb" 
         ar 
         ar-modes="webxr scene-viewer quick-look" 
         camera-controls 
-        poster="poster.webp" 
-        shadow-intensity="1" 
-        style="width: 100%; height: 500px;">
+        auto-rotate
+        shadow-intensity="1">
         
-        <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; padding: 10px;">
-            👋 Xem trong không gian thật
+        <button slot="ar-button" class="nut-bam-ar">
+            Bấm vào đây để xem AR
         </button>
+        
     </model-viewer>
 
 </body>
